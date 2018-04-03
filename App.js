@@ -20,8 +20,8 @@ export default class App extends React.Component {
       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
     };
     return (
-      <View style={styles.container}>
-        <Text>Welcome to IntroduceMe</Text>
+      <View style={[styles.container, {backgroundColor: 'powderblue'}]}>
+        <Text style={{fontSize:30}}>Welcome to IntroduceMe</Text>
         <Image source={pic} style={{width: 193, height: 110}}/>
         <Greeting name='Craig' />
         <Greeting name='Tanner' />
