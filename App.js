@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, Button, View } from 'react-native';
 import { AppRegistry, Image } from 'react-native';
 
 class Greeting extends React.Component {
@@ -10,11 +10,14 @@ class Greeting extends React.Component {
   }
 }
 
-export default class App extends React.Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = { text: "placeholder"};
   }  
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
   render() {
     return (
     <View style={styles.container}>
@@ -24,22 +27,9 @@ export default class App extends React.Component {
           <View style={styles.inputs}>
             <TextInput
                 style={styles.textBox}
-                placeholder="Username"
-                placeholderTextColor="#575250" /*dark grey*/
-                onSubmitEditing={(text) => this.setState({text})}
-                username={this.state.text}
-            />
-            <TextInput
-                style={styles.textBox}
-                placeholder="Password"
-                placeholderTextColor="#575250"
-                onSubmitEditing={(text) => this.setState({text})}
-                password={this.state.text}
-            />
-            <TextInput
-                style={styles.textBox}
                 placeholder="First Name"
                 placeholderTextColor="#575250"
+                autoCapitalize="words"
                 onSubmitEditing={(text) => this.setState({text})}
                 fname={this.state.text}
             />
@@ -47,13 +37,25 @@ export default class App extends React.Component {
                 style={styles.textBox}
                 placeholder="Last Name"
                 placeholderTextColor="#575250"
+                autoCapitalize="words"
                 onSubmitEditing={(text) => this.setState({text})}
                 lname={this.state.text}
             />
             <TextInput
                 style={styles.textBox}
+                placeholder="Password"
+                placeholderTextColor="#575250"
+                autoCapitalize="none"
+                secureTextEntry={true}
+                onSubmitEditing={(text) => this.setState({text})}
+                password={this.state.text}
+            />
+            <TextInput
+                style={styles.textBox}
                 placeholder="Email"
                 placeholderTextColor="#575250"
+                keyboardType="email-address"
+                autoCapitalize="none"
                 onSubmitEditing={(text) => this.setState({text})}
                 email={this.state.text}
             />
@@ -61,6 +63,7 @@ export default class App extends React.Component {
                 style={styles.textBox}
                 placeholder="Phone Number"
                 placeholderTextColor="#575250"
+                keyboardType="numeric"
                 onSubmitEditing={(text) => this.setState({text})}
                 number={this.state.text}
             />
@@ -68,11 +71,19 @@ export default class App extends React.Component {
                 style={styles.textBox}
                 placeholder="Org Code"
                 placeholderTextColor="#575250"
+                autoCapitalize="none"
                 onSubmitEditing={(text) => this.setState({text})}
                 code={this.state.text}
             />
           </View>
-          <View style={{flex: 1, backgroundColor: 'steelblue'}} />
+          <View style={styles.bottomContainer}>
+            <View style={styles.buttonContainer}>
+                <Button
+                    onPress={this._onPressButton}
+                    title="Next"
+                />
+             </View>
+          </View>
       </View>
     );
   }
@@ -91,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   inputs: {
-    flex: 12,
+    flex: 8,
     backgroundColor: 'skyblue',
     alignItems: 'stretch',
     justifyContent: 'center',
@@ -100,4 +111,13 @@ const styles = StyleSheet.create({
   textBox: {
     height: 80,
   },
+  bottomContainer: {
+    flex: 2,
+    backgroundColor: 'steelblue',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+  }
 });
