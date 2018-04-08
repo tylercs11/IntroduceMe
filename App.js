@@ -10,14 +10,54 @@ class Greeting extends React.Component {
   }
 }
 
+function createUser(fName, lName, pw, email, phone, orgCode){
+  fetch('http://192.168.1.115:3000/api/users', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      fName: fName,
+      lName: lName,
+      pw: pw,
+      email: email,
+      phone: phone,
+      orgCode: orgCode,
+      sched: "0000000"
+    })
+  }).then(res => res.json())
+  .catch(error => console.error("Error:", error))
+  .then(response => console.log("Server Response:", response));
+}
+
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: "placeholder"};
+    this.state = { text: "placeholder",
+                    fname: "",
+                    lname: "",
+                    password: "",
+                    email: "",
+                    number: "",
+                    code: ""
+                    };
+    this._onPressButton = this._onPressButton.bind(this);
   }  
   _onPressButton() {
-    Alert.alert('You tapped the button!')
+    let fname = this.state.fname;
+    let lname = this.state.lname;
+    let password = this.state.password;
+    let email = this.state.email;
+    let number = this.state.number;
+    let code = this.state.code;
+    console.log("Passing in: "+fname+" "+lname+" "+password+" "+email+" "+number+" "+code)
+    createUser(fname,lname,password,email,number,code);
+    
+    //Alert.alert('You tapped the button!')
   }
+  
+  
   render() {
     return (
     <View style={styles.container}>
@@ -30,16 +70,16 @@ export default class Home extends React.Component {
                 placeholder="First Name"
                 placeholderTextColor="#575250"
                 autoCapitalize="words"
-                onSubmitEditing={(text) => this.setState({text})}
-                fname={this.state.text}
+                onChangeText={(fname) => this.setState({fname})}
+                value={this.state.fname}
             />
             <TextInput
                 style={styles.textBox}
                 placeholder="Last Name"
                 placeholderTextColor="#575250"
                 autoCapitalize="words"
-                onSubmitEditing={(text) => this.setState({text})}
-                lname={this.state.text}
+                onChangeText={(lname) => this.setState({lname})}
+                lname={this.state.lname}
             />
             <TextInput
                 style={styles.textBox}
@@ -47,8 +87,8 @@ export default class Home extends React.Component {
                 placeholderTextColor="#575250"
                 autoCapitalize="none"
                 secureTextEntry={true}
-                onSubmitEditing={(text) => this.setState({text})}
-                password={this.state.text}
+                onChangeText={(password) => this.setState({password})}
+                password={this.state.password}
             />
             <TextInput
                 style={styles.textBox}
@@ -56,24 +96,24 @@ export default class Home extends React.Component {
                 placeholderTextColor="#575250"
                 keyboardType="email-address"
                 autoCapitalize="none"
-                onSubmitEditing={(text) => this.setState({text})}
-                email={this.state.text}
+                onChangeText={(email) => this.setState({email})}
+                email={this.state.email}
             />
             <TextInput
                 style={styles.textBox}
                 placeholder="Phone Number"
                 placeholderTextColor="#575250"
                 keyboardType="numeric"
-                onSubmitEditing={(text) => this.setState({text})}
-                number={this.state.text}
+                onChangeText={(number) => this.setState({number})}
+                number={this.state.number}
             />
             <TextInput
                 style={styles.textBox}
                 placeholder="Org Code"
                 placeholderTextColor="#575250"
                 autoCapitalize="none"
-                onSubmitEditing={(text) => this.setState({text})}
-                code={this.state.text}
+                onChangeText={(code) => this.setState({code})}
+                code={this.state.code}
             />
           </View>
           <View style={styles.bottomContainer}>
