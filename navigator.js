@@ -18,6 +18,7 @@ const AppNavigator = new StackNavigator(
     navigationOptions: {
       header: null,
     },
+    initialRouteName: 'Home',
   },
 );
 

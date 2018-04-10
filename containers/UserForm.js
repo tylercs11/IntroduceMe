@@ -2,12 +2,14 @@ import React from 'react';
 import UserForm from '../components/UserForm';
 import {View, StyleSheet} from 'react-native'
 import createUser from '../helpers/createUser';
+import { NavigationActions } from 'react-navigation';
 
 export default class UserFormContainer extends React.Component {
 
   render(){
 
     const { navigate } = this.props.navigation;
+    const { dispatch } = this.props.navigation;
 
     function _onPressButton() {
       let fname = this.state.fname;
@@ -18,8 +20,17 @@ export default class UserFormContainer extends React.Component {
       let code = this.state.code;
       console.log("Passing in: "+fname+" "+lname+" "+password+" "+email+" "+number+" "+code)
       createUser(fname,lname,password,email,number,code);
-      navigate('Matching');
-      //Alert.alert('You tapped the button!')
+
+      const resetAction = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Scheduler' }),
+        ],
+      });
+      dispatch(resetAction);
+
+      //set user token = the ID of user created before dispatch
+
     }
 
     return (

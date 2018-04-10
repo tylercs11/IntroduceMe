@@ -18,19 +18,26 @@ export default class AppWithNavigationState extends Component {
   };
 
   componentDidMount() {
-    this.backHandler = BackHandler.addEventListener('backPress', () => {
-      console.log("backpress");
-      this.props.dispatch(NavigationActions.back());
-      return true;
-    });
+    // this.backHandler = BackHandler.addEventListener('backPress', () => {
+    //   console.log("backpress");
+    //   this.props.dispatch(NavigationActions.back());
+    //   goBack(null);
+    //   return true;
+    // });
   }
 
   componentWillUnmount() {
-    this.backHandler.remove();
+    // this.backHandler.remove();
   }
 
   render() {
-    const { dispatch, nav } = this.props;
+    // const { dispatch, nav } = this.props;
+    // this.backHandler = BackHandler.addEventListener('backPress', () => {
+    //
+    //   //this.props.dispatch(NavigationActions.back());
+    //   goBack(null);
+    //   return true;
+    // });
     //<AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
     return <AppNavigator />;
   }
