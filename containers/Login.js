@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 export default class Login extends Component {
 
@@ -8,8 +9,18 @@ export default class Login extends Component {
   };
 
   toMatching = () => {
-    this.props.navigation.navigate('Matching');
+    //reset the stack
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Matching' }),
+      ],
+    });
+    this.props.navigation.dispatch(resetAction);
+    //this.props.navigation.navigate('Matching');
   };
+
+
 
   render() {
     return (
