@@ -7,7 +7,9 @@ export default class UserFormContainer extends React.Component {
 
   render(){
 
-  function _onPressButton() {
+    const { navigate } = this.props.navigation;
+
+    function _onPressButton() {
       let fname = this.state.fname;
       let lname = this.state.lname;
       let password = this.state.password;
@@ -16,7 +18,7 @@ export default class UserFormContainer extends React.Component {
       let code = this.state.code;
       console.log("Passing in: "+fname+" "+lname+" "+password+" "+email+" "+number+" "+code)
       createUser(fname,lname,password,email,number,code);
-
+      navigate('Matching');
       //Alert.alert('You tapped the button!')
     }
 
