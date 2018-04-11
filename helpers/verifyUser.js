@@ -1,20 +1,15 @@
 
-export default function createUser(fName, lName, pw, email, phone, orgCode){
-  var userId = -1;
-  return fetch('http://192.168.1.115:3000/api/users', {
+//returns the users id if success, otherwise -1
+export default function verifyUser(email, pw){
+  return fetch('http://192.168.1.115:3000/api/verifyUser', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      fName: fName,
-      lName: lName,
-      pw: pw,
       email: email,
-      phone: phone,
-      orgCode: orgCode,
-      sched: "0000000"
+      pw: pw
     })
   }).then(res => res.json())
   .catch(error => {
