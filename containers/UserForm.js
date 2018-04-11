@@ -18,16 +18,17 @@ export default class UserFormContainer extends React.Component {
       let email = this.state.email;
       let number = this.state.number;
       let code = this.state.code;
-      console.log("Passing in: "+fname+" "+lname+" "+password+" "+email+" "+number+" "+code)
-      createUser(fname,lname,password,email,number,code);
-
-      const resetAction = NavigationActions.reset({
-        index: 0,
-        actions: [
-          NavigationActions.navigate({ routeName: 'Scheduler' }),
-        ],
+      //console.log("Passing in: "+fname+" "+lname+" "+password+" "+email+" "+number+" "+code)
+      createUser(fname,lname,password,email,number,code).then(response => {
+        var userId = response;
+        const resetAction = NavigationActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'Scheduler', params: {userid: userId} }),
+          ],
+        });
+        dispatch(resetAction);
       });
-      dispatch(resetAction);
 
       //set user token = the ID of user created before dispatch
 

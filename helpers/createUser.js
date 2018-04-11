@@ -1,6 +1,7 @@
 
 export default function createUser(fName, lName, pw, email, phone, orgCode){
-  fetch('http://192.168.1.115:3000/api/users', {
+  var userId = -1;
+  return fetch('http://192.168.1.115:3000/api/users', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -16,6 +17,13 @@ export default function createUser(fName, lName, pw, email, phone, orgCode){
       sched: "0000000"
     })
   }).then(res => res.json())
-  .catch(error => console.error("Error:", error))
-  .then(response => console.log("Server Response:", response));
+  .catch(error => {
+     console.error("Error:", error);
+   })
+  .then(response => {
+    console.log("Server Response:", response);
+    var userId = response.data;
+    return userId;
+  });
+
 }

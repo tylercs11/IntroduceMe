@@ -20,8 +20,6 @@ export default class Login extends Component {
     //this.props.navigation.navigate('Matching');
   };
 
-
-
   render() {
     return (
       <View style={styles.container}>
