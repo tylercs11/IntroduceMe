@@ -5,7 +5,7 @@ import { AppRegistry, Image } from 'react-native';
 export default class UserForm extends React.Component {
   constructor(props) {
     super(props);
-    
+
     //don't think this is needed
     this.state = { text: "placeholder",
                     fname: "",

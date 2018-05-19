@@ -36,9 +36,11 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is the Login Screen</Text>
-        <Button onPress={this.login} title="Sucessful login"/>
-        <Button onPress={this.toSignUp} title="Sign Up"/>
+        <Text style={styles.text}>This is the Login Screen</Text>
+        <View style={styles.buttonHolder}>
+          <Button onPress={this.login} title="Sucessful login"/>
+          <Button onPress={this.toSignUp} title="Sign Up"/>
+        </View>
       </View>
     );
   }
@@ -47,8 +49,18 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexDirection: 'column',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
+      alignItems: 'stretch',
       padding: 10,
+    },
+    buttonHolder: {
+      height: 120,
+      //width: 50,
+      justifyContent: 'space-evenly',
+    },
+    text: {
+      fontSize: 32,
+      marginTop: 150,
+      marginBottom: 100,
     }
 });
